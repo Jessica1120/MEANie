@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles/lookinMean.css">
     <script src="vendors/angular.min.js" charset="utf-8">
     </script><script src="scripts/client.js" charset="utf-8"></script>
-    <script src="scripts/controllerspeeps.controller.js" charset="utf-8"></script>
+    <script src="scripts/controllers/peeps.controller.js" charset="utf-8"></script>
     <script src="scripts/services/peeps.service.js" charset="utf-8"></script>
   </head>
   <body ng-app="myApp">
@@ -14,11 +14,13 @@
     <div>
       <h1>MEANie</h1>
       <p>Where my Peeps?</p>
-      <div ng-controller="WhereMyPeeps as wmp">
-        <input type="text" value="" ng-model="nameIn" placeholder="Name">
+      <div ng-controller="WhereMyPeeps as wmp" ng-init="wmp.PeepsService.get()">
+        <input type="text" value="" ng-model="wmp.nameIn" placeholder="Name">
         <input type="text" value="" ng-model="wmp.locationIn" placeholder="Location">
         <button ng-click='wmp.newPeep()'>Add</button>
-        <button ng-click='wmp.whereMyPeepsAt()'>Read</button>
+        <ul>
+          <li ng-repeat="peep in wmp.allPeeps">{{peep}}</li>
+        </ul>
       </div>
     </div>
   </body>
